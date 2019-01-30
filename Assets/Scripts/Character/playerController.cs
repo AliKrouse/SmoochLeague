@@ -21,11 +21,6 @@ public class playerController : MonoBehaviour
     
     private bool canKiss = true;
     public float kissCoolTime;
-    public GameObject blownKiss;
-    public int numberOfKisses;
-    public int maxKisses;
-    public float rechargeTime;
-    private Coroutine recharger;
 
     public bool isGrounded, isDashing;
 
@@ -33,10 +28,6 @@ public class playerController : MonoBehaviour
 
     private GameObject target;
     private targetController tController;
-
-    public float stunTime;
-    public int blownKissesRecieved;
-    public Coroutine stunPlayer;
     
 	void Start ()
     {
@@ -47,8 +38,6 @@ public class playerController : MonoBehaviour
 
         target = transform.GetChild(0).gameObject;
         tController = target.GetComponent<targetController>();
-
-        numberOfKisses = maxKisses;
 	}
 	
 	void Update ()
@@ -95,16 +84,6 @@ public class playerController : MonoBehaviour
 
             if (rb.velocity.y < 0)
                 rb.gravityScale = 2;
-
-            if (p.GetButtonDown("BlowKiss") && canKiss && numberOfKisses > 0)
-            {
-                GameObject k = Instantiate(blownKiss, target.transform.position, Quaternion.identity);
-                numberOfKisses--;
-                k.GetComponent<blownKiss>().direction = target.transform.position - transform.position;
-                StartCoroutine(cooldownKiss());
-                if (recharger == null)
-                    recharger = StartCoroutine(rechargeKisses());
-            }
         }
 
         if (jumpNumber > 0)
@@ -165,30 +144,5 @@ public class playerController : MonoBehaviour
         canKiss = false;
         yield return new WaitForSeconds(kissCoolTime);
         canKiss = true;
-    }
-
-    IEnumerator rechargeKisses()
-    {
-        while (numberOfKisses < maxKisses)
-        {
-            yield return new WaitForSeconds(rechargeTime);
-            numberOfKisses++;
-        }
-        Debug.Log("recharge finished");
-        recharger = null;
-    }
-
-    public IEnumerator stun()
-    {
-        sr.color = Color.red;
-        p.controllers.maps.SetAllMapsEnabled(false);
-        while (blownKissesRecieved > 0)
-        {
-            yield return new WaitForSeconds(stunTime);
-            blownKissesRecieved--;
-        }
-        p.controllers.maps.SetAllMapsEnabled(true);
-        stunPlayer = null;
-        sr.color = Color.white;
     }
 }
