@@ -12,15 +12,14 @@ public class blownKiss : MonoBehaviour
         transform.position += (Vector3)direction * speed;
 	}
 
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Player"))
-    //    {
-    //        playerController player = collision.gameObject.GetComponent<playerController>();
-    //        player.blownKissesRecieved++;
-    //        if (player.stunPlayer == null)
-    //            player.stunPlayer = player.StartCoroutine(player.stun());
-    //    }
-    //    Destroy(this.gameObject);
-    //}
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            playerController player = collision.gameObject.GetComponent<playerController>();
+            //if (player.stunPlayer == null)
+            //    player.stunPlayer = player.StartCoroutine(player.stun());
+        }
+        Destroy(this.gameObject);
+    }
 }

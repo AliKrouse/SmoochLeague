@@ -581,22 +581,11 @@ MonoBehaviour:
   groundedSpeed: 5
   airSpeed: 2.5
   movementSpeed: 5
-  dashForce: 1000
   jumpPower: 400
   jumpNumber: 0
-  dashNumber: 0
   maxJump: 2
-  maxDash: 1
-  dashTime: 0.15
   kissCoolTime: 0.1
-  blownKiss: {fileID: 1368346989871436, guid: 26c725460425fee438ed662d7ddd5c07, type: 2}
-  numberOfKisses: 0
-  maxKisses: 3
-  rechargeTime: 1
   isGrounded: 0
-  isDashing: 0
-  stunTime: 0.25
-  blownKissesRecieved: 0
 --- !u!50 &1068005603
 Rigidbody2D:
   serializedVersion: 4
@@ -1103,15 +1092,6 @@ MonoBehaviour:
       _behaviorId: 0
       _userAssignable: 1
       _categoryId: 0
-    - _id: 2
-      _name: Dash
-      _type: 1
-      _descriptiveName: 
-      _positiveDescriptiveName: 
-      _negativeDescriptiveName: 
-      _behaviorId: 0
-      _userAssignable: 1
-      _categoryId: 0
     - _id: 3
       _name: Ability
       _type: 1
@@ -1157,7 +1137,7 @@ MonoBehaviour:
     actionCategoryMap:
       list:
       - categoryId: 0
-        actionIds: 00000000010000000200000003000000040000000500000006000000
+        actionIds: 000000000100000003000000040000000500000006000000
     inputBehaviors:
     - _id: 0
       _name: Default
@@ -1272,17 +1252,6 @@ MonoBehaviour:
       - _actionCategoryId: 0
         _actionId: 3
         _elementType: 1
-        _elementIdentifierId: 8
-        _axisRange: 0
-        _invert: 0
-        _axisContribution: 0
-        _keyboardKeyCode: 0
-        _modifierKey1: 0
-        _modifierKey2: 0
-        _modifierKey3: 0
-      - _actionCategoryId: 0
-        _actionId: 2
-        _elementType: 1
         _elementIdentifierId: 10
         _axisRange: 0
         _invert: 0
@@ -1292,7 +1261,7 @@ MonoBehaviour:
         _modifierKey2: 0
         _modifierKey3: 0
       - _actionCategoryId: 0
-        _actionId: 2
+        _actionId: 3
         _elementType: 1
         _elementIdentifierId: 11
         _axisRange: 0
@@ -1365,18 +1334,7 @@ MonoBehaviour:
         _modifierKey2: 0
         _modifierKey3: 0
       - _actionCategoryId: 0
-        _actionId: 2
-        _elementType: 1
-        _elementIdentifierId: 8
-        _axisRange: 0
-        _invert: 0
-        _axisContribution: 0
-        _keyboardKeyCode: 0
-        _modifierKey1: 0
-        _modifierKey2: 0
-        _modifierKey3: 0
-      - _actionCategoryId: 0
-        _actionId: 2
+        _actionId: 3
         _elementType: 1
         _elementIdentifierId: 10
         _axisRange: 0
@@ -1387,9 +1345,9 @@ MonoBehaviour:
         _modifierKey2: 0
         _modifierKey3: 0
       - _actionCategoryId: 0
-        _actionId: 2
-        _elementType: 0
-        _elementIdentifierId: 5
+        _actionId: 3
+        _elementType: 1
+        _elementIdentifierId: 11
         _axisRange: 0
         _invert: 0
         _axisContribution: 0
@@ -1462,17 +1420,6 @@ MonoBehaviour:
       - _actionCategoryId: 0
         _actionId: 3
         _elementType: 1
-        _elementIdentifierId: 8
-        _axisRange: 0
-        _invert: 0
-        _axisContribution: 0
-        _keyboardKeyCode: 0
-        _modifierKey1: 0
-        _modifierKey2: 0
-        _modifierKey3: 0
-      - _actionCategoryId: 0
-        _actionId: 2
-        _elementType: 1
         _elementIdentifierId: 10
         _axisRange: 0
         _invert: 0
@@ -1482,7 +1429,7 @@ MonoBehaviour:
         _modifierKey2: 0
         _modifierKey3: 0
       - _actionCategoryId: 0
-        _actionId: 2
+        _actionId: 3
         _elementType: 1
         _elementIdentifierId: 11
         _axisRange: 0
@@ -1530,17 +1477,6 @@ MonoBehaviour:
         _invert: 0
         _axisContribution: 0
         _keyboardKeyCode: 119
-        _modifierKey1: 0
-        _modifierKey2: 0
-        _modifierKey3: 0
-      - _actionCategoryId: 0
-        _actionId: 2
-        _elementType: 1
-        _elementIdentifierId: -1
-        _axisRange: 0
-        _invert: 0
-        _axisContribution: 0
-        _keyboardKeyCode: 32
         _modifierKey1: 0
         _modifierKey2: 0
         _modifierKey3: 0

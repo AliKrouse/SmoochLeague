@@ -13,7 +13,6 @@ public class groundPlayer : MonoBehaviour
             playerController player = collision.gameObject.GetComponent<playerController>();
             player.isGrounded = true;
             player.jumpNumber = player.maxJump;
-            player.dashNumber = player.maxDash;
             collision.gameObject.GetComponent<Rigidbody2D>().gravityScale = 1;
         }
     }
