@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
+using UnityEngine.SceneManagement;
 
 public class menuController : MonoBehaviour
 {
@@ -78,6 +79,8 @@ public class menuController : MonoBehaviour
                 {
                     Application.Quit();
                 }
+
+                StartCoroutine(freezeInput());
             }
         }
 
@@ -88,7 +91,23 @@ public class menuController : MonoBehaviour
 
         if (playerScreen.activeSelf)
         {
+            if (Input.GetKey(KeyCode.Alpha2))
+                activatePlayers.numberOfPlayers = 1;
+            if (Input.GetKey(KeyCode.Alpha3))
+                activatePlayers.numberOfPlayers = 2;
+            if (Input.GetKey(KeyCode.Alpha4))
+                activatePlayers.numberOfPlayers = 3;
+            if (Input.GetKey(KeyCode.Alpha5))
+                activatePlayers.numberOfPlayers = 4;
+            if (Input.GetKey(KeyCode.Alpha6))
+                activatePlayers.numberOfPlayers = 5;
+            if (Input.GetKey(KeyCode.Alpha7))
+                activatePlayers.numberOfPlayers = 6;
+            if (Input.GetKey(KeyCode.Alpha8))
+                activatePlayers.numberOfPlayers = 7;
 
+            if (p1.GetButtonDown("Select") && acceptInput)
+                SceneManager.LoadScene(1);
         }
 	}
 
