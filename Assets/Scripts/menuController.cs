@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Rewired;
 using UnityEngine.SceneManagement;
 
@@ -15,6 +16,8 @@ public class menuController : MonoBehaviour
     private int currentSelection;
 
     private bool acceptInput;
+
+    public menuCards[] cards;
     
 	void Start ()
     {
@@ -27,6 +30,11 @@ public class menuController : MonoBehaviour
         menuScreen.SetActive(false);
         instScreen.SetActive(false);
         playerScreen.SetActive(false);
+
+        foreach (menuCards mc in cards)
+            mc.isActive = false;
+
+        cards[0].isActive = true;
 	}
 	
 	void Update ()
@@ -91,23 +99,7 @@ public class menuController : MonoBehaviour
 
         if (playerScreen.activeSelf)
         {
-            if (Input.GetKey(KeyCode.Alpha2))
-                activatePlayers.numberOfPlayers = 1;
-            if (Input.GetKey(KeyCode.Alpha3))
-                activatePlayers.numberOfPlayers = 2;
-            if (Input.GetKey(KeyCode.Alpha4))
-                activatePlayers.numberOfPlayers = 3;
-            if (Input.GetKey(KeyCode.Alpha5))
-                activatePlayers.numberOfPlayers = 4;
-            if (Input.GetKey(KeyCode.Alpha6))
-                activatePlayers.numberOfPlayers = 5;
-            if (Input.GetKey(KeyCode.Alpha7))
-                activatePlayers.numberOfPlayers = 6;
-            if (Input.GetKey(KeyCode.Alpha8))
-                activatePlayers.numberOfPlayers = 7;
 
-            if (p1.GetButtonDown("Select") && acceptInput)
-                SceneManager.LoadScene(1);
         }
 	}
 
