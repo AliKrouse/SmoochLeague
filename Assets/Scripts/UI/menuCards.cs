@@ -13,6 +13,8 @@ public class menuCards : MonoBehaviour
     private Text characterName;
     private GameObject cover;
 
+    public GameObject spotlight;
+
     public bool isActive;
 
     public int character;
@@ -49,7 +51,7 @@ public class menuCards : MonoBehaviour
             {
                 for (int i = 0; i < charList.Length; i++)
                 {
-                    if (charList[i].GetComponent<Collider2D>().bounds.Contains(pointer.transform.position))
+                    if (charList[i].GetComponent<Collider2D>().bounds.Contains(pointer.transform.position) && character != i + 1)
                     {
                         if (character != 0)
                         {
@@ -58,6 +60,10 @@ public class menuCards : MonoBehaviour
                         charList[i].isSelected = true;
                         character = i + 1;
                         characterName.text = charList[i].characterName;
+
+                        spotlight.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 500);
+                        spotlight.transform.position = new Vector2(charList[i].gameObject.transform.position.x, spotlight.transform.position.y);
+                        spotlight.GetComponent<menuSpotlight>().hasBeenMoved = true;
                     }
                 }
             }
