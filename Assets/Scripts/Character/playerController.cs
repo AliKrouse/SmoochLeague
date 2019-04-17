@@ -11,8 +11,7 @@ public class playerController : MonoBehaviour
     private Animator anim;
     private SpriteRenderer sr;
 
-    public float groundedSpeed, airSpeed, movementSpeed;
-    private string direction = "right";
+    public float movementSpeed;
     public int jumpPower;
     public int jumpNumber;
     public int maxJump;
@@ -35,40 +34,23 @@ public class playerController : MonoBehaviour
         if (isGrounded)
         {
             anim.SetBool("isGrounded", true);
-            movementSpeed = groundedSpeed;
         }
         else
         {
             anim.SetBool("isGrounded", false);
-
-            if (direction == "right" && p.GetAxis("Move") < -float.Epsilon)
-            {
-                movementSpeed = airSpeed;
-                direction = "left";
-            }
-            if (direction == "left" && p.GetAxis("Move") > float.Epsilon)
-            {
-                movementSpeed = airSpeed;
-                direction = "right";
-            }
         }
 
         if (Mathf.Abs(p.GetAxis("Move")) > float.Epsilon)
         {
             anim.SetBool("isMoving", true);
-            if (p.GetAxis("Move") > float.Epsilon)
-            {
-                sr.flipX = false;
-            }
-            if (p.GetAxis("Move") < -float.Epsilon)
-            {
-                sr.flipX = true;
-            }
-
-            rb.velocity = new Vector2(p.GetAxis("Move") * movementSpeed, rb.velocity.y);
+            Move();
         }
         else
+        {
             anim.SetBool("isMoving", false);
+            if (isGrounded)
+                rb.velocity = new Vector2(0, rb.velocity.y);
+        }
 
         if (rb.velocity.y < 0)
             rb.gravityScale = 2;
@@ -77,11 +59,24 @@ public class playerController : MonoBehaviour
         {
             if (p.GetButtonDown("Jump"))
             {
-                movementSpeed = groundedSpeed;
                 Jump();
             }
         }
 	}
+
+    void Move()
+    {
+        if (p.GetAxis("Move") > float.Epsilon)
+        {
+            sr.flipX = false;
+        }
+        if (p.GetAxis("Move") < -float.Epsilon)
+        {
+            sr.flipX = true;
+        }
+
+        rb.velocity = new Vector2(p.GetAxis("Move") * movementSpeed, rb.velocity.y);
+    }
 
     void Jump()
     {

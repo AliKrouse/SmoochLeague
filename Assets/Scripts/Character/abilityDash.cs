@@ -11,6 +11,10 @@ public class abilityDash : MonoBehaviour
 
     private GameObject target;
 
+    private Rigidbody2D rb;
+
+    public GameObject trail;
+
     void Start ()
     {
         p = ReInput.players.GetPlayer(GetComponent<playerController>().PLAYERNUMBER);
@@ -21,6 +25,8 @@ public class abilityDash : MonoBehaviour
         speed = 25;
         dashTime = 0.075f;
         rechargeTime = 1;
+
+        rb = GetComponent<Rigidbody2D>();
     }
 	
 	void Update ()
@@ -32,16 +38,27 @@ public class abilityDash : MonoBehaviour
         {
             transform.position = Vector2.MoveTowards(transform.position, target.transform.position, Time.deltaTime * speed);
         }
-	}
+    }
 
     private IEnumerator Dash()
     {
         GetComponent<playerController>().enabled = false;
         GetComponent<Rigidbody2D>().gravityScale = 0;
         transform.position = new Vector2(transform.position.x, transform.position.y + 0.1f);
+
+        float mag = rb.velocity.magnitude;
+        Vector2 dir = target.transform.position - transform.position;
+
+        GameObject dashTrail = Instantiate(trail, transform);
+
         dashing = true;
         yield return new WaitForSeconds(dashTime);
         dashing = false;
+
+        rb.velocity = dir * mag;
+
+        dashTrail.GetComponent<killTrail>().enabled = true;
+        
         GetComponent<Rigidbody2D>().gravityScale = 1;
         GetComponent<playerController>().enabled = true;
         StartCoroutine(rechargeDash());

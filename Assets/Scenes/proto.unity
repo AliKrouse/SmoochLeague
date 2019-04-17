@@ -303,8 +303,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PLAYERNUMBER: 3
-  groundedSpeed: 5
-  airSpeed: 2.5
   movementSpeed: 5
   jumpPower: 400
   jumpNumber: 0
@@ -509,8 +507,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PLAYERNUMBER: 1
-  groundedSpeed: 5
-  airSpeed: 2.5
   movementSpeed: 5
   jumpPower: 400
   jumpNumber: 0
@@ -1078,8 +1074,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PLAYERNUMBER: 5
-  groundedSpeed: 5
-  airSpeed: 2.5
   movementSpeed: 5
   jumpPower: 400
   jumpNumber: 0
@@ -1706,6 +1700,8 @@ GameObject:
   - component: {fileID: 1068005604}
   - component: {fileID: 1068005603}
   - component: {fileID: 1068005602}
+  - component: {fileID: 1068005609}
+  - component: {fileID: 1068005608}
   m_Layer: 9
   m_Name: player 0
   m_TagString: Player
@@ -1725,8 +1721,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PLAYERNUMBER: 0
-  groundedSpeed: 5
-  airSpeed: 2.5
   movementSpeed: 5
   jumpPower: 400
   jumpNumber: 0
@@ -1843,6 +1837,35 @@ Transform:
   m_Father: {fileID: 1707112981}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1068005608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1068005601}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62f0692c755324b45a90fc00b245fc84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kiss: {fileID: 0}
+  maxKisses: 0
+  rechargeTime: 0
+--- !u!114 &1068005609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1068005601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2560a6fac763bca49be6492cf20b078b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 15
+  dashTime: 0.5
+  rechargeTime: 0
+  trail: {fileID: 1154185141433618, guid: 3ad7e320008e95d4a85a157b1d452623, type: 2}
 --- !u!1 &1151951243
 GameObject:
   m_ObjectHideFlags: 0
@@ -2843,8 +2866,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PLAYERNUMBER: 4
-  groundedSpeed: 5
-  airSpeed: 2.5
   movementSpeed: 5
   jumpPower: 400
   jumpNumber: 0
@@ -3193,8 +3214,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PLAYERNUMBER: 2
-  groundedSpeed: 5
-  airSpeed: 2.5
   movementSpeed: 5
   jumpPower: 400
   jumpNumber: 0
@@ -3694,8 +3713,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PLAYERNUMBER: 7
-  groundedSpeed: 5
-  airSpeed: 2.5
   movementSpeed: 5
   jumpPower: 400
   jumpNumber: 0
@@ -3918,8 +3935,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PLAYERNUMBER: 6
-  groundedSpeed: 5
-  airSpeed: 2.5
   movementSpeed: 5
   jumpPower: 400
   jumpNumber: 0
