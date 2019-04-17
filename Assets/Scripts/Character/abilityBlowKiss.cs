@@ -7,7 +7,7 @@ public class abilityBlowKiss : MonoBehaviour
 {
     private Player p;
     public GameObject kiss;
-    private int kisses;
+    public int kisses;
     public int maxKisses;
     public float rechargeTime;
 
@@ -18,12 +18,12 @@ public class abilityBlowKiss : MonoBehaviour
     void Start ()
     {
         p = ReInput.players.GetPlayer(GetComponent<playerController>().PLAYERNUMBER);
-        kisses = maxKisses;
 
         target = transform.GetChild(0).gameObject;
 
         kiss = Resources.Load<GameObject>("blown kiss");
         maxKisses = 3;
+        kisses = maxKisses;
         rechargeTime = 0.5f;
     }
 	
@@ -49,5 +49,7 @@ public class abilityBlowKiss : MonoBehaviour
             yield return new WaitForSeconds(rechargeTime);
             kisses++;
         }
+        if (kisses == maxKisses)
+            recharge = null;
     }
 }

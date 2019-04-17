@@ -27,6 +27,8 @@ public class abilityDash : MonoBehaviour
         rechargeTime = 1;
 
         rb = GetComponent<Rigidbody2D>();
+
+        trail = Resources.Load<GameObject>("dash trail");
     }
 	
 	void Update ()
