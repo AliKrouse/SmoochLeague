@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4270050357837658}
   - component: {fileID: 212114948550192618}
   - component: {fileID: 58562636942238100}
-  - component: {fileID: 114756567138225488}
+  - component: {fileID: 114330758381647998}
   m_Layer: 0
   m_Name: push ring
   m_TagString: Untagged
@@ -48,7 +48,7 @@ CircleCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1072974127054972}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -57,7 +57,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.16
---- !u!114 &114756567138225488
+--- !u!114 &114330758381647998
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -69,12 +69,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mother: {fileID: 0}
-  expandRate: 25
-  fadeRate: 2
-  maxSize: 0
+  expandRate: 40
+  fadeRate: 2.5
+  maxSize: 8
   sr: {fileID: 0}
   c: {r: 1, g: 1, b: 1, a: 1}
-  pushForce: 100
+  pushForce: 25
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!212 &212114948550192618
 SpriteRenderer:
   m_ObjectHideFlags: 1
