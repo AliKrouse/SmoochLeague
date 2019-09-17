@@ -74,7 +74,7 @@ MonoBehaviour:
   maxSize: 8
   sr: {fileID: 0}
   c: {r: 1, g: 1, b: 1, a: 1}
-  pushForce: 25
+  pushForce: 1000
   playerMask:
     serializedVersion: 2
     m_Bits: 512

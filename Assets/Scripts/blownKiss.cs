@@ -16,7 +16,9 @@ public class blownKiss : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            playerController player = collision.gameObject.GetComponent<playerController>();
+            collision.gameObject.AddComponent<stun>();
+
+            //playerController player = collision.gameObject.GetComponent<playerController>();
             //if (player.stunPlayer == null)
             //    player.stunPlayer = player.StartCoroutine(player.stun());
         }

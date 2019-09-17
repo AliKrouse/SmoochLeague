@@ -21,6 +21,9 @@ public class abilityPush : MonoBehaviour
         canPush = true;
 
         ring = Resources.Load<GameObject>("push ring");
+
+        pauseTime = 0.35f;
+        rechargeTime = 2f;
     }
 
     void Update ()

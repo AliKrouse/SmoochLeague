@@ -9,15 +9,17 @@ public class menuController : MonoBehaviour
 {
     private Player p1;
     private Player[] allPlayers;
-    public GameObject titleScreen, menuScreen, instScreen, playerScreen;
+    public GameObject title, titleText, titleBG, setPlayers;
+    private Image titleI, titleBGI;
+    private bool titleScreen, movingToMenu, menuScreen;
 
-    public GameObject select1, select2;
-    public Vector2[] selectorPoints;
-    private int currentSelection;
+    public float fadeSpeed;
 
     private bool acceptInput;
 
-    public menuCards[] cards;
+    public RectTransform[] menuOptions;
+    public RectTransform selector;
+    public int currentSelection;
     
 	void Start ()
     {
@@ -26,87 +28,105 @@ public class menuController : MonoBehaviour
         for (int i = 0; i < 8; i++)
             allPlayers[i] = ReInput.players.GetPlayer(i);
 
-        titleScreen.SetActive(true);
-        menuScreen.SetActive(false);
-        instScreen.SetActive(false);
-        playerScreen.SetActive(false);
+        titleScreen = true;
+        title.SetActive(true);
+        titleText.SetActive(true);
+        titleBG.SetActive(true);
+        titleI = title.GetComponent<Image>();
+        titleBGI = titleBG.GetComponent<Image>();
 
-        foreach (menuCards mc in cards)
-            mc.isActive = false;
+        setPlayers.SetActive(false);
 
-        cards[0].isActive = true;
+        selector.anchoredPosition = new Vector2(20, menuOptions[currentSelection].anchoredPosition.y);
+
+        acceptInput = true;
 	}
 	
 	void Update ()
     {
-        if (titleScreen.activeSelf)
+        if (p1.GetAnyButtonDown() && titleScreen)
         {
-            if (p1.GetButtonDown("Select"))
+            titleText.SetActive(false);
+            title.GetComponent<Animator>().enabled = true;
+            titleScreen = false;
+            movingToMenu = true;
+        }
+
+        if (movingToMenu)
+        {
+            float s = title.transform.localScale.x;
+            s += Time.deltaTime * (s*s);
+
+            if (title.transform.rotation.z != 0)
             {
-                menuScreen.SetActive(true);
-                titleScreen.SetActive(false);
-                StartCoroutine(freezeInput());
+                float a = titleBGI.color.a;
+                a -= Time.deltaTime * fadeSpeed;
+
+                titleBGI.color = new Color(titleBGI.color.r, titleBGI.color.g, titleBGI.color.b, a);
+
+                if (a <= 0)
+                {
+                    titleBG.SetActive(false);
+                    movingToMenu = false;
+                    menuScreen = true;
+                }
             }
         }
 
-        if (menuScreen.activeSelf)
+        if (menuScreen)
         {
-            if (p1.GetAxis("Vertical selection") > float.Epsilon && acceptInput)
-            {
-                currentSelection--;
-                StartCoroutine(freezeInput());
-            }
             if (p1.GetAxis("Vertical selection") < -float.Epsilon && acceptInput)
             {
-                currentSelection++;
+                if (currentSelection < (menuOptions.Length - 1))
+                    currentSelection++;
+
                 StartCoroutine(freezeInput());
             }
-            if (currentSelection < 0)
-                currentSelection = selectorPoints.Length - 1;
-            if (currentSelection >= selectorPoints.Length)
-                currentSelection = 0;
-
-            select1.transform.localPosition = selectorPoints[currentSelection];
-            select2.transform.localPosition = new Vector2(-selectorPoints[currentSelection].x, selectorPoints[currentSelection].y);
-
-            if (p1.GetButtonDown("Select") && acceptInput)
+            if (p1.GetAxis("Vertical selection") > float.Epsilon && acceptInput)
             {
-                if (currentSelection == 0)
-                {
-                    playerScreen.SetActive(true);
-                    menuScreen.SetActive(false);
-                    StartCoroutine(freezeInput());
-                }
-                if (currentSelection == 1)
-                {
-                    instScreen.SetActive(true);
-                    menuScreen.SetActive(false);
-                    StartCoroutine(freezeInput());
-                }
-                if (currentSelection == 2)
-                {
-                    Application.Quit();
-                }
+                if (currentSelection > 0)
+                    currentSelection--;
 
                 StartCoroutine(freezeInput());
             }
-        }
 
-        if (instScreen.activeSelf)
-        {
+            selector.anchoredPosition = new Vector2(20, menuOptions[currentSelection].anchoredPosition.y);
 
-        }
-
-        if (playerScreen.activeSelf)
-        {
-
+            if (p1.GetButtonDown("Select"))
+            {
+                MakeSelection();
+            }
         }
 	}
+
+    void MakeSelection()
+    {
+        if (currentSelection == 0)
+        {
+            menuScreen = false;
+            setPlayers.SetActive(true);
+        }
+
+        if (currentSelection == 1)
+        {
+
+        }
+
+        if (currentSelection == 2)
+        {
+
+        }
+
+        if (currentSelection == 3)
+        {
+            Application.Quit();
+        }
+    }
 
     private IEnumerator freezeInput()
     {
         acceptInput = false;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.15f);
         acceptInput = true;
     }
 }

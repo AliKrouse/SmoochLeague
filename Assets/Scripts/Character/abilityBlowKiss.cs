@@ -22,9 +22,9 @@ public class abilityBlowKiss : MonoBehaviour
         target = transform.GetChild(0).gameObject;
 
         kiss = Resources.Load<GameObject>("blown kiss");
-        maxKisses = 3;
+        maxKisses = 1;
         kisses = maxKisses;
-        rechargeTime = 0.5f;
+        rechargeTime = 1f;
     }
 	
 	void Update ()
