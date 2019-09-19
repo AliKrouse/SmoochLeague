@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class activatePlayers : MonoBehaviour
 {
-    public static int numberOfPlayers;
-    public GameObject[] players;
+    public playerController[] players;
     public List<Transform> spawnPoints;
     
 	void Start ()
     {
         for (int i = 0; i < 8; i++)
         {
-            if (i <= numberOfPlayers)
+            if (i <= playerData.activePlayers)
             {
-                players[i].SetActive(true);
+                players[i].gameObject.SetActive(true);
+                players[i].characterNumber = playerData.characterChoice[i];
+                players[i].abilityNumber = playerData.abilityChoice[i];
                 int p = Random.Range(0, spawnPoints.Count);
                 players[i].transform.position = spawnPoints[p].position;
                 spawnPoints.Remove(spawnPoints[p]);
