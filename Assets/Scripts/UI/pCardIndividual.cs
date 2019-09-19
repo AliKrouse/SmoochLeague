@@ -124,6 +124,7 @@ public class pCardIndividual : MonoBehaviour
                 abilityChosen.text = abilityNames[abilityChoice];
                 abilityChosen.gameObject.SetActive(true);
                 ready.SetActive(true);
+                transform.parent.GetComponent<playerCards>().CheckForReadyPlayers();
             }
         }
 	}
@@ -144,7 +145,7 @@ public class pCardIndividual : MonoBehaviour
     private IEnumerator freezeInputs()
     {
         acceptInput = false;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.25f);
         acceptInput = true;
     }
 }
