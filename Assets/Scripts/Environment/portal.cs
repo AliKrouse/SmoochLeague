@@ -10,16 +10,27 @@ public class portal : MonoBehaviour
     private bool canBeUsed = true;
     public float rechargeTime;
 
+    private SpriteRenderer sr;
+    private Color c;
+
 	void Start ()
     {
         partner = partnerObject.gameObject.GetComponent<portal>();
+
+        if (GetComponent<SpriteRenderer>() != null)
+            sr = GetComponent<SpriteRenderer>();
+
+        if (sr != null)
+            c = sr.color;
 	}
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (canBeUsed)
+        if (collision.gameObject.CompareTag("Player") && canBeUsed)
         {
+            Debug.Log(collision.gameObject.name + " entered portal at " + transform.position);
             collision.gameObject.transform.position = partnerObject.position;
+
             StartCoroutine(rechargePortal());
             partner.StartCoroutine(partner.rechargePortal());
         }
@@ -28,7 +39,19 @@ public class portal : MonoBehaviour
     public IEnumerator rechargePortal()
     {
         canBeUsed = false;
+
+        if (sr != null)
+        {
+            GetComponent<SpriteRenderer>().color = Color.black;
+        }
+
         yield return new WaitForSeconds(rechargeTime);
+
+        if (sr != null)
+        {
+            GetComponent<SpriteRenderer>().color = c;
+        }
+
         canBeUsed = true;
     }
 }

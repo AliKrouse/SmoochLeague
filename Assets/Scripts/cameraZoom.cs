@@ -35,6 +35,11 @@ public class cameraZoom : MonoBehaviour
         {
             c.orthographicSize -= Time.deltaTime * zoomSpeed;
         }
+
+        if (c.orthographicSize > maxOrtho)
+            c.orthographicSize = maxOrtho;
+        if (c.orthographicSize < minOrtho)
+            c.orthographicSize = minOrtho;
 	}
 
     private float Midpoint()
